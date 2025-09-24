@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Move")]
     public float moveForce = 10f; // WASDで加える力の大きさ
+    public TextMeshProUGUI HPText;
+    private int HP = 200;
 
     private Rigidbody rb;
     private Animator animator;
@@ -16,6 +19,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        HPText.text = "HP: " + HP.ToString();
     }
 
     // ---- 入力・アニメはフレーム更新で処理 ----
