@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("konnnichiwa");
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
     }
