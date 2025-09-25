@@ -4,11 +4,10 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] PlayerStatusSO playerStatusSO;
     [Header("Move")]
     public float moveForce = 10f; // WASDで加える力の大きさ
     public TextMeshProUGUI HPText;
-    private int HP = 200;
-
     private Rigidbody rb;
     private Animator animator;
 
@@ -19,7 +18,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        HPText.text = "HP: " + HP.ToString();
+        HPText.text = "HP: " + playerStatusSO.HP.ToString();
     }
 
     // ---- 入力・アニメはフレーム更新で処理 ----
@@ -39,12 +38,12 @@ public class PlayerController : MonoBehaviour
 
         // --- アニメーション（押下状態から算出） ---
         // 元コードの意図を踏襲：W/SでRun、AでRunLeft、DでRunRight
-        bool run      = k.wKey.isPressed || k.sKey.isPressed;
-        bool runLeft  = k.aKey.isPressed;
+        bool run = k.wKey.isPressed || k.sKey.isPressed;
+        bool runLeft = k.aKey.isPressed;
         bool runRight = k.dKey.isPressed;
 
-        animator.SetBool("Run",      run);
-        animator.SetBool("RunLeft",  runLeft);
+        animator.SetBool("Run", run);
+        animator.SetBool("RunLeft", runLeft);
         animator.SetBool("RunRight", runRight);
 
         // 参考：離した瞬間のログ（必要ならここでワンショット処理を）
@@ -62,5 +61,10 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(heldDir * moveForce, ForceMode.Acceleration);
         }
+    }
+
+    void OnCollisionEnter(Collider col)
+    {
+        //
     }
 }
