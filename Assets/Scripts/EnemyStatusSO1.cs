@@ -9,6 +9,7 @@ public class EnemyStatusSO : ScriptableObject
     [System.Serializable]
     public class EnemyStatus
     {
+        [SerializeField] string name;
         [SerializeField] int hP;
         [SerializeField] int mP;
         [SerializeField] int attack;
