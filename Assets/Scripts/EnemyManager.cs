@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] Transform target;
+    [SerializeField] EnemyStatusSO enemyStatusSO;
     private NavMeshAgent agent;
     private Animator animator;
     public float speed;

@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI HPText;
     private Rigidbody rb;
     private Animator animator;
+    private int currentHP;
 
     // Updateで作った入力結果を物理用にバッファ
     private Vector3 heldDir = Vector3.zero;
@@ -18,12 +19,14 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        HPText.text = "HP: " + playerStatusSO.HP.ToString();
+        currentHP = playerStatusSO.HP;
+        HPText.text = "HP: " + currentHP.ToString();
     }
 
     // ---- 入力・アニメはフレーム更新で処理 ----
     void Update()
     {
+        HPText.text = "HP: " + currentHP.ToString();
         var k = Keyboard.current;
         if (k == null) return;
 
@@ -63,8 +66,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collider col)
+    void OnCollisionEnter(Collision col)
     {
-        //
+        currentHP -= 10;
     }
 }
