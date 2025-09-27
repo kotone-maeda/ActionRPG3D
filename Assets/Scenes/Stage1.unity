@@ -4483,6 +4483,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 920961653}
+    - target: {fileID: 1205656517461366937, guid: 928a1377c1cd4515b208fef3a396b8ea, type: 3}
+      propertyPath: enemyStatusSO
+      value: 
+      objectReference: {fileID: 11400000, guid: f57fa094d8f7de04487d0f6df5c35030, type: 2}
     - target: {fileID: 2236960094992296317, guid: 928a1377c1cd4515b208fef3a396b8ea, type: 3}
       propertyPath: m_Height
       value: 1

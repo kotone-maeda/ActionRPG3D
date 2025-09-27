@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     [Header("Move")]
     public float moveForce = 10f; // WASDで加える力の大きさ
     public TextMeshProUGUI HPText;
+    [Header("Attack")]
+    [SerializeField] float attackCooldown = 0.35f; // 連打抑制したいとき
+    float nextAttackTime = 0f;
     private Rigidbody rb;
     private Animator animator;
     private int currentHP;
@@ -28,7 +31,15 @@ public class PlayerController : MonoBehaviour
     {
         HPText.text = "HP: " + currentHP.ToString();
         var k = Keyboard.current;
-        if (k == null) return;
+        var m = Mouse.current;
+        if (k == null || m == null) return;
+
+        // ---- 攻撃：右クリックの「押された瞬間」
+        if (m.rightButton.wasPressedThisFrame && Time.time >= nextAttackTime)
+        {
+            animator.SetTrigger("Attack");      // ← Trigger を使うのが楽
+            nextAttackTime = Time.time + attackCooldown;
+        }
 
         // 押されている間の入力方向（ワールド前後左右）
         Vector3 dir = Vector3.zero;
