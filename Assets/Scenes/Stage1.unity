@@ -3771,6 +3771,7 @@ MonoBehaviour:
   playerStatusSO: {fileID: 11400000, guid: 0c7ec340cc9b0fb409a974d79fec0aa6, type: 2}
   moveForce: 200
   HPText: {fileID: 480534892}
+  attackCooldown: 0.35
 --- !u!4 &920961653 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8855052669661678444, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
@@ -4487,6 +4488,10 @@ PrefabInstance:
       propertyPath: enemyStatusSO
       value: 
       objectReference: {fileID: 11400000, guid: f57fa094d8f7de04487d0f6df5c35030, type: 2}
+    - target: {fileID: 1205656517461366937, guid: 928a1377c1cd4515b208fef3a396b8ea, type: 3}
+      propertyPath: playerStatusSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 0c7ec340cc9b0fb409a974d79fec0aa6, type: 2}
     - target: {fileID: 2236960094992296317, guid: 928a1377c1cd4515b208fef3a396b8ea, type: 3}
       propertyPath: m_Height
       value: 1

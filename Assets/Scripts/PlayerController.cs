@@ -59,13 +59,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Run", run);
         animator.SetBool("RunLeft", runLeft);
         animator.SetBool("RunRight", runRight);
-
-        // 参考：離した瞬間のログ（必要ならここでワンショット処理を）
-        if (k.wKey.wasReleasedThisFrame)
-        {
-            Debug.Log("W Released");
-            // 例）離した瞬間に減速/停止させたいならここでフラグを立てる
-        }
     }
 
     // ---- 物理は固定タイミングで処理 ----

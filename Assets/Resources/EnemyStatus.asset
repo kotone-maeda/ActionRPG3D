@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStatusSO
   enemyStatusList:
   - name: "\u3059\u3089\u3044\u3080"
-    hP: 50
+    hP: 20
     mP: 10
-    attack: 1
-    defence: 1
+    attack: 2
+    defence: 2
