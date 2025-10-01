@@ -12,5 +12,7 @@ public class PlayerStatusSO : ScriptableObject
     // setはでもよろしくない。
     // SpecializeFieldではなく普通にpublicと上で定義しても同じ感じになるが、こっちの方法がいいらしい
     public int HP { get => hP; }
+    public int MP { get => mP; }
     public int ATTACK { get => attack; }
+    public int DEFENCE { get => defence; }
 }
