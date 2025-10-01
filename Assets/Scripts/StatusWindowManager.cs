@@ -14,7 +14,7 @@ public class StatusWindowManager : MonoBehaviour
     void Start()
     {
         nameValue.text = "yusha";
-        hpValue.text = playerStatusSO.HP.ToString();
+        hpValue.text = GameObject.Find("MaleCharacterPBR").GetComponent<PlayerController>().currentHP.ToString();
         mpValue.text = playerStatusSO.MP.ToString();
         attackValue.text = playerStatusSO.ATTACK.ToString();
         defenceValue.text = playerStatusSO.DEFENCE.ToString();

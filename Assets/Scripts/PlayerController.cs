@@ -8,12 +8,13 @@ public class PlayerController : MonoBehaviour
     [Header("Move")]
     public float moveForce = 10f; // WASDで加える力の大きさ
     public TextMeshProUGUI HPText;
+    [SerializeField] GameObject statusWindow;
     [Header("Attack")]
     [SerializeField] float attackCooldown = 0.35f; // 連打抑制したいとき
     float nextAttackTime = 0f;
     private Rigidbody rb;
     private Animator animator;
-    private int currentHP;
+    public int currentHP;
 
     // Updateで作った入力結果を物理用にバッファ
     private Vector3 heldDir = Vector3.zero;
@@ -39,6 +40,23 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger("Attack");      // ← Trigger を使うのが楽
             nextAttackTime = Time.time + attackCooldown;
+        }
+
+        if (k.tabKey.wasPressedThisFrame)
+        {
+            bool isActive = !statusWindow.activeSelf;
+            statusWindow.SetActive(isActive);
+
+            if (isActive)
+            {
+                // UIを開いたとき：ゲームを一時停止
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                // UIを閉じたとき：再開
+                Time.timeScale = 1f;
+            }
         }
 
         // 押されている間の入力方向（ワールド前後左右）
