@@ -9,12 +9,16 @@ public class PlayerController : MonoBehaviour
     public float moveForce = 10f; // WASDで加える力の大きさ
     public TextMeshProUGUI HPText;
     [SerializeField] GameObject statusWindow;
+    public TextMeshProUGUI coinText;
+    public TextMeshProUGUI potionText;
+    public int currentHP;
     [Header("Attack")]
     [SerializeField] float attackCooldown = 0.35f; // 連打抑制したいとき
     float nextAttackTime = 0f;
     private Rigidbody rb;
     private Animator animator;
-    public int currentHP;
+    private int coin = 0;
+    private int potion = 0;
 
     // Updateで作った入力結果を物理用にバッファ
     private Vector3 heldDir = Vector3.zero;
@@ -91,5 +95,26 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         currentHP -= 10;
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.CompareTag("Item"))
+        {
+            switch (col.gameObject.GetComponent<ItemManager>().itemNo)
+            {
+                case 0:
+                    coin += 1;
+                    coinText.text = coin.ToString();
+                    break;
+                case 1:
+                    potion += 1;
+                    potionText.text = potion.ToString();
+                    break;
+                default:
+                    break;
+            }
+            Destroy(col.gameObject);
+        }
     }
 }
