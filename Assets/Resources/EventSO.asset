@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bc981e87fdd9f049a5959308d5989f1, type: 3}
+  m_Name: EventSO
+  m_EditorClassIdentifier: Assembly-CSharp::EventSO
+  eventList:
+  - name: Dog
+    words: Give me money!
+    yes: 1
+    no: 2
+  - name: Dog
+    words: Give me food!
+    yes: 0
+    no: 2
+  - name: Dog
+    words: Maybe you are a bit smart...
+    yes: 0
+    no: 3
+  - name: Dog
+    words: Hmmm....
+    yes: 3
+    no: 3
