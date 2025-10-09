@@ -32,6 +32,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.position += player.transform.position - playerPos;
         playerPos = player.transform.position;
 
         var m = Mouse.current;

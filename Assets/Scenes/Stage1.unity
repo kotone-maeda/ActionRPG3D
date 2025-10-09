@@ -2432,6 +2432,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
   player: {fileID: 920961646}
+  mouseXSensitivity: 0.1
+  mouseXSmooth: 12
+  pitchSpeed: 100
+  minPitch: -30
+  maxPitch: 65
+  invertY: 1
+  yawSpeed: 100
 --- !u!1001 &340457660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5168,7 +5175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   playerStatusSO: {fileID: 11400000, guid: 0c7ec340cc9b0fb409a974d79fec0aa6, type: 2}
-  moveForce: 200
+  moveForce: 10
   HPText: {fileID: 480534892}
   statusWindow: {fileID: 775792007}
   currentHP: 0

@@ -106,9 +106,12 @@ public class PlayerController : MonoBehaviour
     {
         cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
         moveForward = cameraForward * inputVertical + Camera.main.transform.right * inputHorizontal;
-        rb.velocity = moveForward * moveForce + new Vector3(0, rb.velocity.y, 0);
-        // rb.AddForce(transform.forward * moveForce * inputVertical, ForceMode.Acceleration);
-        // rb.AddForce(transform.right * moveForce * inputHorizontal, ForceMode.Acceleration);
+        rb.linearVelocity = moveForward * moveForce + new Vector3(0, rb.linearVelocity.y, 0);
+
+        if(moveForward != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(moveForward);
+        }
     }
 
     void OnCollisionEnter(Collision col)
