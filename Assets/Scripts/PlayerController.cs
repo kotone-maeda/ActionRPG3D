@@ -18,7 +18,11 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
 
     // Updateで作った入力結果を物理用にバッファ
-    private Vector3 heldDir = Vector3.zero;
+    // private Vector3 heldDir = Vector3.zero;
+    private float inputHorizontal;
+    private float inputVertical;
+    private Vector3 cameraForward;
+    private Vector3 moveForward;
 
     void Awake()
     {
@@ -61,14 +65,30 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // 押されている間の入力方向（ワールド前後左右）
-        Vector3 dir = Vector3.zero;
-        if (k.wKey.isPressed) dir += Vector3.forward;
-        if (k.sKey.isPressed) dir += Vector3.back;
-        if (k.dKey.isPressed) dir += Vector3.right;
-        if (k.aKey.isPressed) dir += Vector3.left;
-        if (dir.sqrMagnitude > 1f) dir.Normalize();
-        heldDir = dir; // FixedUpdate用に保持
+        float h = 0f, v = 0f;
+        if (k.aKey.isPressed) h -= 1f;
+        if (k.dKey.isPressed) h += 1f;
+        if (k.sKey.isPressed) v -= 1f;
+        if (k.wKey.isPressed) v += 1f;
+
+        var gp = Gamepad.current;
+        if (gp != null)
+        {
+            Vector2 stick = gp.leftStick.ReadValue();
+            // キー入力より有意に動いていればスティック値を優先
+            if (Mathf.Abs(stick.x) > Mathf.Abs(h)) h = stick.x;
+            if (Mathf.Abs(stick.y) > Mathf.Abs(v)) v = stick.y;
+        }
+
+        // 斜め入力で速くなりすぎないように（W+Dなど）：両方押しのときだけ正規化
+        if (h != 0f && v != 0f)
+        {
+            Vector2 n = new Vector2(h, v).normalized;
+            h = n.x; v = n.y;
+        }
+
+        inputHorizontal = h;
+        inputVertical   = v;
 
         // --- アニメーション（押下状態から算出） ---
         // 元コードの意図を踏襲：W/SでRun、AでRunLeft、DでRunRight
@@ -84,10 +104,11 @@ public class PlayerController : MonoBehaviour
     // ---- 物理は固定タイミングで処理 ----
     void FixedUpdate()
     {
-        if (heldDir.sqrMagnitude > 0f)
-        {
-            rb.AddForce(heldDir * moveForce, ForceMode.Acceleration);
-        }
+        cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+        moveForward = cameraForward * inputVertical + Camera.main.transform.right * inputHorizontal;
+        rb.velocity = moveForward * moveForce + new Vector3(0, rb.velocity.y, 0);
+        // rb.AddForce(transform.forward * moveForce * inputVertical, ForceMode.Acceleration);
+        // rb.AddForce(transform.right * moveForce * inputHorizontal, ForceMode.Acceleration);
     }
 
     void OnCollisionEnter(Collision col)
