@@ -7,6 +7,12 @@ public class ItemBoxManager : MonoBehaviour
     // [SerializeField] TextMeshProUGUI coinValue;
     // [SerializeField] TextMeshProUGUI potionValue;
     [SerializeField] TextMeshProUGUI itemOpenText;
+    [SerializeField] GameObject player;
+    [SerializeField] GameObject itemImage_prefab;
+    [SerializeField] GameObject itemQty_prefab;
+    [SerializeField] Transform itemBox3Image;
+    [SerializeField] Transform itemBox3Text;
+    
     public int getItem;
     private int[] itemQtyAry;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,5 +42,10 @@ public class ItemBoxManager : MonoBehaviour
             itemText += itemSO.itemList[i].ItemName + " : " + itemQtyAry[i].ToString() + "\n";
         }
         itemOpenText.text = itemText;
+    }
+
+    public void UseItem(int itemNo)
+    {
+        
     }
 }

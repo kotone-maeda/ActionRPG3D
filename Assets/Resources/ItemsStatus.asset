@@ -16,9 +16,12 @@ MonoBehaviour:
   - type: 0
     itemName: Coin
     description: "\u901A\u8CA8"
-  - type: 3
+    effect: 1
+  - type: 1
     itemName: Potion
     description: "\u56DE\u5FA9"
+    effect: 50
   - type: 1
     itemName: Sword
     description: "\u6B66\u5668"
+    effect: 20

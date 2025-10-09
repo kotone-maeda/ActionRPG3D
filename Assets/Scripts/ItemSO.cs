@@ -13,13 +13,17 @@ public class ItemSO : ScriptableObject
         [SerializeField] string itemName;
         [TextArea]
         [SerializeField] string description;
+        [SerializeField] int effect;
         public enum itemType
         {
             coin,
+            recovery,
             weapon,
             armour,
             tool,
         }
         public string ItemName { get => itemName; }
+        public itemType ItemType { get => type; }
+        public int ItemEffect { get => effect; }
     }
 }
