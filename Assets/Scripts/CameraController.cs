@@ -8,11 +8,11 @@ public class CameraController : MonoBehaviour
     // [Optional] スムージングしたい場合
     [SerializeField] float mouseXSmooth = 12f;
     float mouseXVel;   // SmoothDamp 用ワーク
-    [SerializeField] float pitchSpeed = 100f; // 垂直回転速度（deg/sec）
+    [SerializeField] float pitchSpeed = 50f; // 垂直回転速度（deg/sec）
     [SerializeField] float minPitch = -30f;   // 下限（下向き）
     [SerializeField] float maxPitch = 65f;    // 上限（上向き）
     [SerializeField] bool invertY = true;     // マウスを上に動かすと上を見る: true
-    [SerializeField] float yawSpeed = 100f; // 水平回転速度（deg/sec）
+    [SerializeField] float yawSpeed = 50f; // 水平回転速度（deg/sec）
     float currentPitch = 0f;                // 現在のピッチ角（deg）
     private Vector3 playerPos;
     private float speed = 100f;
